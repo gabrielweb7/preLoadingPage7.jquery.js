@@ -28,24 +28,34 @@
 		/* Bloqueando Scrollbar */
 		$("body").css("overflow-y","hidden");
 		
+		/* Setando para o topo Scroll Bar */
+		$("html, body").animate({ scrollTop: 0 }, "fast");
+		
 		/* Criando Tela de Loading */
-		objThis.prepend("<div id='preLoadingPage7' style='position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:9999; background:white; display: flex; justify-content: center; align-items: center;'>"+settings.gifStyle+"</div>");
+		objThis.prepend("<div id='preLoadingPage7' style='position:fixed; top:0px; left:0px; width:100%; height:100%; z-index:9999; background:white; display: flex; justify-content: center; align-items: center;'>"+settings.gifStyle+"</div>");
 
 		/** 
 			Depois que a página carregar 100%
 		**/
 		$(window).on("load", function(e) {
+		
+			setTimeout(function() { 
 			
-			/* Remove Div Loading */
-			$("#preLoadingPage7").find("img").hide();
-			
-			/* Efeito FadeOut */
-			$("#preLoadingPage7").fadeOut(1300, function() {
+				/* Remove Div Loading */
+				$("#preLoadingPage7").find("img").hide();
 				
-				/* Após fade out remover DIV LOADING */
-				$("#preLoadingPage7").remove();
-			
-			});
+				/* Efeito FadeOut */
+				$("#preLoadingPage7").fadeOut(1300, function() {
+					
+					/* Após fade out remover DIV LOADING */
+					$("#preLoadingPage7").remove();
+					
+					/* Liberar Scrollbar */
+					$("body").css("overflow-y","initial");
+				
+				});
+						
+			}, 1000);
 			
 		});
 		
